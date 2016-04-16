@@ -131,6 +131,24 @@ var _ = Describe("Manifest reader", func() {
 				Expect(manifestAppFinder.RoutesFromManifest("example.com")).To(BeNil())
 			})
 		})
+
+		Context("when the app manifest has no hosts declared", func() {
+			It("uses app name value as host value", func() {
+				repo := FakeRepo{yaml: `---
+      			name: foo
+      			domains:
+      			- example.com
+      			- example.net`,
+				}
+				manifestAppFinder := ManifestAppFinder{AppName: "foo", Repo: &repo}
+				routes := manifestAppFinder.RoutesFromManifest("example.com")
+
+				Expect(routes).To(ConsistOf(
+					Route{Host: "foo", Domain: Domain{Name: "example.com"}},
+					Route{Host: "foo", Domain: Domain{Name: "example.com"}},
+				))
+			})
+		})
 	})
 })
 

@@ -82,7 +82,7 @@ func (p *CfPlugin) Deploy(defaultCfDomain string, repo manifest.ManifestReposito
 	}
 }
 
-func (p *CfPlugin) GetNewAppRoutes(appName string, defaultCfDomain string, repo manifest.ManifestRepository, liveAppRoutes []Route) []Route{
+func (p *CfPlugin) GetNewAppRoutes(appName string, defaultCfDomain string, repo manifest.ManifestRepository, liveAppRoutes []Route) []Route {
 	newAppRoutes := []Route{}
 	f := ManifestAppFinder{AppName: appName, Repo: repo}
 	if manifestRoutes := f.RoutesFromManifest(defaultCfDomain); manifestRoutes != nil {
@@ -170,6 +170,8 @@ func ExtractIntegrationTestScript(args []string) string {
 
 func main() {
 	// T needs to point to a translate func, otherwise cf internals blow up
+
+	fmt.Println("value is/n/n" + go_i18n.Tfunc())
 	i18n.T, _ = go_i18n.Tfunc("")
 	p := CfPlugin{
 		Deployer: &BlueGreenDeploy{
