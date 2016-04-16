@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	. "github.com/bluemixgaragelondon/cf-blue-green-deploy"
-	"github.com/cloudfoundry/cli/plugin/fakes"
+	  "github.com/cloudfoundry/cli/plugin/pluginfakes"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
