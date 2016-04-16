@@ -161,7 +161,7 @@ func (l *CfCurlAppLister) AppsInCurrentSpace() ([]Application, error) {
 }
 
 func getSpaceGuid() string {
-	configRepo := core_config.NewRepositoryFromFilepath(config_helpers.DefaultFilePath(), func(err error) {
+	configRepo := coreconfig.NewRepositoryFromFilepath(confighelpers.DefaultFilePath(), func(err error) {
 		if err != nil {
 			fmt.Printf("Config error: %s", err)
 		}
